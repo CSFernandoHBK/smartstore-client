@@ -20,9 +20,9 @@ export default function RegistrationForm() {
             return(alert("As senhas precisam ser iguais!"))
         }
         const requisicao = axios.post(`${urlAPI}user/sign-up`,{
-            "name": nome,
+            "username": nome,
+            "email": email,
             "password": senha,
-            "email": email
         })
         requisicao.then(() => {alert("Conta criada com sucesso!");navigate("/")});
         requisicao.catch((res) => {console.log(res);alert(res.response.data);setDisabled(false)});
