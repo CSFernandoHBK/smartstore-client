@@ -22,7 +22,7 @@ export default function LoginForm() {
         event.preventDefault();
         setDisabled(true);
 
-        const requisicao = axios.post(`${urlAPI}user/sign-in`, {
+        const requisicao = axios.post(`${urlAPI}auth`, {
             "email": email,
             "password": password 
         })
@@ -31,6 +31,7 @@ export default function LoginForm() {
     };
 
     function responseProcess(res){
+        console.log(res);
         localStorage.setItem("token", JSON.stringify(res));
         navigate("/home");
     }
