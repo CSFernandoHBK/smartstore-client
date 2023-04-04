@@ -33,7 +33,7 @@ export default function LoginForm() {
     function responseProcess(res){
         console.log(res);
         localStorage.setItem("token", JSON.stringify(res));
-        navigate("/home");
+        navigate("/product");
     }
 
     return(
