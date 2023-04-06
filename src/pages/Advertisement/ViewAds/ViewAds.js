@@ -4,23 +4,17 @@ import TopBar from "../../../components/TopBar";
 
 export default function ViewAds() {
     return(
-        //O conteudo vai embaixo da topbar
-        <>
-            <Container>
-                <SideBar/>
-                <div>
-                    <TopBar/>
-                </div>
-            </Container>
-        </>
+        <Container>
+
+        </Container>
     );
 };
 
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 
     & > div:nth-child(2){
         width: 80vw;

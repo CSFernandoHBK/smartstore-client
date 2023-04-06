@@ -22,5 +22,6 @@ const Container = styled.div`
 
     img{
         height: 50px;
+        padding-right: 20px;
     }
 `;

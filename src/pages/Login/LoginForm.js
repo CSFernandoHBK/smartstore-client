@@ -13,7 +13,7 @@ export default function LoginForm() {
 
     useEffect(() => {
         if(token){
-          navigate("/home")
+          navigate("/product")
         }
       }, [])
       
@@ -21,6 +21,18 @@ export default function LoginForm() {
     function sendLogin(event){
         event.preventDefault();
         setDisabled(true);
+
+        //aqui eu preciso inserir uma verificação:
+            //consultar se existe esse usuario
+                //se tiver
+                    //consultar se existe sessão ativa pra ele
+                        //se tiver
+                            //navigate pra product
+                        //se nao
+                            //mandar login
+                //se nao
+                    //retornar erro
+
 
         const requisicao = axios.post(`${urlAPI}auth`, {
             "email": email,

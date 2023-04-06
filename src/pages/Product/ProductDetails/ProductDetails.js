@@ -29,11 +29,7 @@ export default function ProductDetails() {
 
     return(
         <Container>
-            <SideBar/>
-            <div>
-                <TopBar/>
-                <DetailsArea productInfo={productInfo}/>
-            </div>
+            <DetailsArea productInfo={productInfo}/>
         </Container>
     );
 };
@@ -44,5 +40,6 @@ const Container = styled.div`
 
     & > div:nth-child(2){
         width: 80vw;
+        padding-top: 80px;
     }
 `;

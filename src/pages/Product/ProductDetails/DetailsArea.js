@@ -1,8 +1,19 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import img1 from "../../../assets/images/img1.png"
+import { urlAPI } from "../../../constants/URLs";
 
 export default function DetailsArea(props) {
     const {id, name, buyPrice, sellPrice, stock} = props.productInfo;
+    const token = JSON.parse(localStorage.getItem("token"));
+    const navigate = useNavigate();
+
+    function deleteProduct(id){
+        const requisition = axios.delete(`${urlAPI}product/${id}`,
+        {headers: {"Authorization": `Bearer ${token}`}})
+        requisition.then(() => {alert("Produto deletado");navigate("/product")})
+    }
 
     return(
         <Container>
@@ -31,7 +42,7 @@ export default function DetailsArea(props) {
                 </div>
                 <ButtonsArea>
                     <button>Editar produto</button>
-                    <button>Deletar produto</button>
+                    <button onClick={() => deleteProduct(id)}>Deletar produto</button>
                 </ButtonsArea>  
             </div>
             
@@ -41,7 +52,7 @@ export default function DetailsArea(props) {
 
 const Container = styled.div`
     display: flex;
-    height: 90vh;
+    height: 100%;
     align-items: center;
 
     h1{

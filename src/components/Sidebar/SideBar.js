@@ -18,7 +18,10 @@ export default function SideBar() {
 };
 
 const Container = styled.div`
-    width: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
     height: 100%;
     background-color: grey;
     padding-left: 20px;

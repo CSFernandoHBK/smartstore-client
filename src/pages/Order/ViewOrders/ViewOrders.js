@@ -30,11 +30,7 @@ export default function ViewOrders() {
     return(
         <>
             <Container>
-                <SideBar/>
-                <div>
-                    <TopBar/>
-                    <OrderTable orderList={orderList}/>
-                </div>
+                <OrderTable orderList={orderList}/>
             </Container>
         </>
     );
@@ -43,11 +39,10 @@ export default function ViewOrders() {
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 
     & > div:nth-child(2){
         width: 80vw;
-        padding-top: 80px;
     }
 `;
