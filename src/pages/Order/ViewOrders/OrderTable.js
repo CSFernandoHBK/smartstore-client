@@ -1,6 +1,8 @@
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import hooks from "../../../hooks";
+import TableLine from "./TableLine";
 
 export default function OrderTable(props) {
     const {orderList} = props;
@@ -10,21 +12,17 @@ export default function OrderTable(props) {
         <Container>
             <TableHead>
                 <TableRow>
-                    <TableCell>id</TableCell>
-                    <TableCell>data</TableCell>
-                    <TableCell>valor</TableCell>
+                    <TableCell>Id</TableCell>
+                    <TableCell>Data</TableCell>
+                    <TableCell>Valor</TableCell>
+                    <TableCell>Produtos</TableCell>
+                    <TableCell>Rastreamento</TableCell>
+                    <TableCell>Recebido?</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
                {orderList.map((a) => 
-                <TableRow>
-                  <TableCell>{a.id}</TableCell>
-                  <TableCell>{a.date}</TableCell>
-                  <TableCell>{a.value}</TableCell>
-                  <TableCell>
-                    <button onClick={() => navigate(`/order/${a.id}`)}>Saiba mais</button>
-                  </TableCell>
-                </TableRow>
+                <TableLine orderInfo={a}/>
                )} 
             </TableBody>
         </Container>

@@ -12,13 +12,14 @@ export default function TopBar() {
 const Container = styled.div`
     display: flex;
     background-color: blue;
-    width: 85%;
+    width: 100%;
     justify-content: flex-end;
     align-items: center;
     height: 80px;
     position: fixed;
     top: 0;
-    left: 15%;
+    left: 0;
+    z-index: 2;
 
     img{
         height: 50px;

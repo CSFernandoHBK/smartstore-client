@@ -2,10 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import SideBar from "../../../components/Sidebar/SideBar";
-import TopBar from "../../../components/TopBar";
 import { urlAPI } from "../../../constants/URLs";
-import hooks from "../../../hooks";
 import OrderTable from "./OrderTable";
 
 export default function ViewOrders() {
@@ -15,7 +12,7 @@ export default function ViewOrders() {
     useEffect(() => {
       const requisition = axios.get(`${urlAPI}order`,
       {headers: {"Authorization": `Bearer ${token}`}})
-      requisition.then((res) => setOrderList(res.data))
+      requisition.then((res) => {setOrderList(res.data)})
     }, [])
 
 
@@ -28,11 +25,9 @@ export default function ViewOrders() {
     }
 
     return(
-        <>
-            <Container>
-                <OrderTable orderList={orderList}/>
-            </Container>
-        </>
+        <Container>
+            <OrderTable orderList={orderList}/>
+        </Container>
     );
 };
 

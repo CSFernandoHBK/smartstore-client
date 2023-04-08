@@ -51,7 +51,7 @@ function ProtectedRouteGuard({ children }) {
 
 const Content = styled.div`
   padding-top: 100px;
-  padding-left: 200px;
+  padding-left: 230px;
 `
 
 const Container = styled.div`

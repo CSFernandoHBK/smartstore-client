@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { urlAPI } from "../../../constants/URLs";
 import ProductCard from "./ProductCard";
 import img1 from "../../../assets/images/img1.png"
+import NewCard from "./NewCard";
 
 export default function ViewProducts() {
     const [productList, setProductList] = useState([]);
@@ -25,6 +26,7 @@ export default function ViewProducts() {
 
     return(
         <Container>
+            <NewCard/>
             {productList.map((a) => <ProductCard productInfo={a} img={img1}/>)}
         </Container>
     );
@@ -32,6 +34,7 @@ export default function ViewProducts() {
 
 const Container = styled.div`
     display: flex;
+    height: 100%;
+    width: 100%;
     flex-wrap: wrap;
-    width: 85vw;
 `;
