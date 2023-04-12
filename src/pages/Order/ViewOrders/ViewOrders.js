@@ -26,6 +26,7 @@ export default function ViewOrders() {
 
     return(
         <Container>
+            <h1>Pedidos</h1>
             <OrderTable orderList={orderList}/>
         </Container>
     );
@@ -33,9 +34,15 @@ export default function ViewOrders() {
 
 const Container = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     height: 100%;
     width: 100%;
+
+    h1{
+        margin-bottom: 20px;
+        font-size: 30px;
+    }
 
     & > div:nth-child(2){
         width: 80vw;
