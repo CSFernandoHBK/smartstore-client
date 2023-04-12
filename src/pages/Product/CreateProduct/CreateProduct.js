@@ -69,7 +69,7 @@ const Container = styled.div`
     flex-direction: column;
 
     h1{
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         font-size: 30px;
     }
 `;

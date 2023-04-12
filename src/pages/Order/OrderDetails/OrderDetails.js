@@ -9,7 +9,7 @@ export default function OrderDetails(props) {
 
     return(
         <Container>
-            
+            Entrou no pedido {orderId}
         </Container>
     );
 };

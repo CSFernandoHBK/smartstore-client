@@ -26,8 +26,11 @@ export default function ViewProducts() {
 
     return(
         <Container>
-            <NewCard/>
-            {productList.map((a) => <ProductCard productInfo={a} img={img1}/>)}
+            <h1>Produtos</h1>
+            <div>
+                {productList.map((a) => <ProductCard productInfo={a} img={img1}/>)}   
+                <NewCard/>
+            </div>
         </Container>
     );
 };
@@ -36,5 +39,16 @@ const Container = styled.div`
     display: flex;
     height: 100%;
     width: 100%;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    div:nth-child(2){
+        display:flex;
+        flex-wrap: wrap;
+        border: 1.5px solid #FF897E;
+    }
+
+    h1{
+        margin-bottom: 20px;
+        font-size: 30px;
+    }
 `;

@@ -15,7 +15,6 @@ export default function OrderTable(props) {
                     <TableCell>Id</TableCell>
                     <TableCell>Data</TableCell>
                     <TableCell>Valor</TableCell>
-                    <TableCell>Produtos</TableCell>
                     <TableCell>Rastreamento</TableCell>
                     <TableCell>Recebido?</TableCell>
                 </TableRow>
@@ -23,8 +22,9 @@ export default function OrderTable(props) {
             <TableBody>
                {orderList.map((a) => 
                 <TableLine orderInfo={a}/>
-               )} 
+               )}
             </TableBody>
+            <ButtonNew onClick={() => navigate("/order/new")}>Inserir novo pedido</ButtonNew>    
         </Container>
     );
 };
@@ -32,3 +32,8 @@ export default function OrderTable(props) {
 const Container = styled.div`
 
 `;
+
+const ButtonNew = styled.button`
+    width: 100%;
+    height: 50px;
+`

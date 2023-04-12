@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import addProduct from "../../../assets/images/addProduct.jpg"
 
 export default function NewCard(props) {
     const token = JSON.parse(localStorage.getItem("token"));
@@ -7,6 +8,7 @@ export default function NewCard(props) {
 
     return(
         <Container onClick={() => navigate(`/product/new`)}>
+            <img src={addProduct}/>
             <h3>Inserir novo produto</h3>
             <button>Inserir produto</button>
         </Container>

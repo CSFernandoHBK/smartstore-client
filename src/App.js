@@ -10,6 +10,10 @@ import TopBar from "./components/TopBar"
 import styled from "styled-components"
 import SideBar from "./components/Sidebar/SideBar"
 import CreateProduct from "./pages/Product/CreateProduct/CreateProduct"
+import ViewFinance from "./pages/Finance/ViewFinance/ViewFinance"
+import ViewSells from "./pages/Sell/ViewSells/ViewSells"
+import NewSell from "./pages/Sell/NewSell/NewSell"
+import NewOrder from "./pages/Order/CreateOrder/CreateOrder"
 
 
 export default function App() {
@@ -28,7 +32,11 @@ export default function App() {
               <Route path="/product/new" element={<CreateProduct/>}/>
               <Route path="order" element={<ViewOrders/>}/>
               <Route path="/order/:orderId" element={<OrderDetails/>}/>
-              <Route path="advertisement" element={<ViewAds/>}/>
+              <Route path="/order/new" element={<NewOrder/>}/>
+              <Route path="/finance" element={<ViewFinance/>}/>
+              <Route path="/sell" element={<ViewSells/>}/>
+              <Route path="/sell/new" element={<NewSell/>}/>
+              <Route path="/advertisement" element={<ViewAds/>}/>
             </Routes>  
           </Content>
         </Container>
@@ -52,6 +60,8 @@ function ProtectedRouteGuard({ children }) {
 const Content = styled.div`
   padding-top: 100px;
   padding-left: 230px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 `
 
 const Container = styled.div`

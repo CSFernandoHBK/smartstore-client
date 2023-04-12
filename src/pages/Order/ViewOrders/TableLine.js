@@ -7,7 +7,7 @@ import hooks from "../../../hooks";
 
 export default function TableLine(props) {
     const {id, date, value} = props.orderInfo;
-    const [trackingCode, setTrackingCode] = useState("Carregando...")
+    const [trackingCode, setTrackingCode] = useState()
     const navigate = useNavigate();
     const token = JSON.parse(localStorage.getItem("token"));
 
@@ -19,7 +19,10 @@ export default function TableLine(props) {
         const requisition = axios.get(`${urlAPI}tracking/${id}`, 
         {headers: {"Authorization": `Bearer ${token}`}})
         requisition.then((res) => {setTrackingCode(res.data)})
+        .catch((err) => console.log(err))
     }
+
+    console.log(trackingCode);
 
     async function getTrackingInfo(){
         const requisition = axios.get(`${urlAPI}tracking`, 
@@ -31,8 +34,7 @@ export default function TableLine(props) {
             <TableCell>{id}</TableCell>
             <TableCell>{date}</TableCell>
             <TableCell>{value}</TableCell>
-            <TableCell>[1,2,3,4]</TableCell>
-            <TableCell>{trackingCode}</TableCell>
+            <TableCell>{trackingCode ? trackingCode : "Não encontrado"}</TableCell>
             <TableCell>Checkbox</TableCell>
             <TableCell>
                 <button onClick={() => navigate(`/order/${id}`)}>Saiba mais</button>

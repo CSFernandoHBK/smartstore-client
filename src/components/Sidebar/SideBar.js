@@ -5,9 +5,9 @@ import SideBarItem from "./SideBarItem";
 
 export default function SideBar() {
     const functions = [
-        {name: "Produtos", route:"/product"}, {name: "Pedidos", route:"/order"}, 
-        {name: "Anúncios", route:"/advertisement"}, {name: "Finanças", route:"/finance"}, 
-        {name: "Mensagens", route:"/message"}
+        {name: "Produtos", route:"/product"}, {name: "Pedidos", route:"/order"},
+        {name: "Finanças", route:"/finance"}, {name: "Vendas", route:"/sell"},
+        {name: "Anúncios", route:"/advertisement"}
     ]
 
     return(
