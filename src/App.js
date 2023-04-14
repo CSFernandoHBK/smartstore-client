@@ -14,35 +14,53 @@ import ViewFinance from "./pages/Finance/ViewFinance/ViewFinance"
 import ViewSells from "./pages/Sell/ViewSells/ViewSells"
 import NewSell from "./pages/Sell/NewSell/NewSell"
 import NewOrder from "./pages/Order/CreateOrder/CreateOrder"
+import NotFound from "./pages/NotFound/NotFound"
 
 
 export default function App() {
-  return(
-    <>
-      <GlobalStyles/>
-      <Router>
-        <SideBar/>
-        <Container>
-          <TopBar/>
-          <Content>
-            <Routes>
-              <Route path="/" element={<Landing/>}/>
-              <Route path="/product" element={<ViewProducts/>}/>
-              <Route path="product/:productId" element={<ProductDetails/>}/>
-              <Route path="/product/new" element={<CreateProduct/>}/>
-              <Route path="order" element={<ViewOrders/>}/>
-              <Route path="/order/:orderId" element={<OrderDetails/>}/>
-              <Route path="/order/new" element={<NewOrder/>}/>
-              <Route path="/finance" element={<ViewFinance/>}/>
-              <Route path="/sell" element={<ViewSells/>}/>
-              <Route path="/sell/new" element={<NewSell/>}/>
-              <Route path="/advertisement" element={<ViewAds/>}/>
-            </Routes>  
-          </Content>
-        </Container>
-      </Router>
-    </>
-  )
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  if(token){
+    return(
+      <>
+        <GlobalStyles/>
+        <Router>
+          <SideBar/>
+          <Container>
+            <TopBar/>
+            <Content>
+              <Routes>
+                <Route path="/" element={<Landing/>}/>
+                <Route path="/product" element={<ViewProducts/>}/>
+                <Route path="/product/:productId" element={<ProductDetails/>}/>
+                <Route path="/product/new" element={<CreateProduct/>}/>
+                <Route path="/order" element={<ViewOrders/>}/>
+                <Route path="/order/:orderId" element={<OrderDetails/>}/>
+                <Route path="/order/new" element={<NewOrder/>}/>
+                <Route path="/finance" element={<ViewFinance/>}/>
+                <Route path="/sell" element={<ViewSells/>}/>
+                <Route path="/sell/new" element={<NewSell/>}/>
+                <Route path="/advertisement" element={<ViewAds/>}/>
+              </Routes>  
+            </Content>
+          </Container>
+        </Router>
+      </>
+    )
+  } else {
+    return(
+      <>
+        <GlobalStyles/>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Landing/>}/>
+          </Routes>
+        </Router>
+      </>
+    )
+  }
+
+  
 };
 
 function ProtectedRouteGuard({ children }) {
@@ -65,5 +83,6 @@ const Content = styled.div`
 `
 
 const Container = styled.div`
-
+  height: 100vh;
+  background-color: #F5F5F5;
 `

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import img1 from "../../../assets/images/img1.png"
 import { urlAPI } from "../../../constants/URLs";
+import { formatValue } from "../../../services";
 
 export default function DetailsArea(props) {
     const {id, name, buyPrice, sellPrice, stock} = props.productInfo;
@@ -23,11 +24,11 @@ export default function DetailsArea(props) {
                 <div>
                     <div>
                         <span>Valor de compra:</span>
-                        <span>R$ {buyPrice/100}</span>
+                        <span>{formatValue(buyPrice)}</span>
                     </div>
                     <div>
                         <span>Valor de venda:</span>
-                        <span>R$ {sellPrice/100}</span>
+                        <span>{formatValue(sellPrice)}</span>
                     </div>    
                 </div>
                 <div>

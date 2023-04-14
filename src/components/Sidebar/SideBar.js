@@ -24,7 +24,7 @@ const Container = styled.div`
     z-index: 3;
     width: 200px;
     height: 100%;
-    background-color: grey;
+    background-color: #1C995E;
     padding-left: 20px;
     padding-top: 20px;
 `;

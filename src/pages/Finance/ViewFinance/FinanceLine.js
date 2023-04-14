@@ -1,4 +1,5 @@
 import { TableCell, TableRow } from "@mui/material";
+import { formatDate, formatValue } from "../../../services";
 
 
 export default function FinanceLine(props) {
@@ -7,8 +8,8 @@ export default function FinanceLine(props) {
     return(
         <TableRow>
             <TableCell>{isEntry ? "Entrada" : "Saída"}</TableCell>
-            <TableCell>{date}</TableCell>
-            <TableCell>R$ {value}</TableCell>
+            <TableCell>{formatDate(date)}</TableCell>
+            <TableCell>{formatValue(value)}</TableCell>
             <TableCell>{description}</TableCell> 
         </TableRow>    
     );

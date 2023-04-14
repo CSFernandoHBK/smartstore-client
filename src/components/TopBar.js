@@ -11,7 +11,7 @@ export default function TopBar() {
 
 const Container = styled.div`
     display: flex;
-    background-color: blue;
+    background-color: #0E2A47;
     width: 100%;
     justify-content: flex-end;
     align-items: center;

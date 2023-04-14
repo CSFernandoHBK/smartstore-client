@@ -11,6 +11,7 @@ export default function NewOrder() {
     const [disabled, setDisabled] = useState(false);
     const token = JSON.parse(localStorage.getItem("token"));
     const navigate = useNavigate();
+    const [selectedItems, setSelectedItems] = useState([]);
 
     function handleSubmit(event){
         event.preventDefault();
@@ -26,38 +27,56 @@ export default function NewOrder() {
         requisition.then((res) => {console.log(res);alert("Criado!")})
         .catch((err) => console.log(err))
 
+        const reqOrder = axios.post(`${urlAPI}order`, {
+            value: Number(value),
+            date: formatedDate
+        }, {headers: {"Authorization": `Bearer ${token}`}})
+        requisition.then((res) => {console.log(res);alert("Criado!")})
+        .catch((err) => console.log(err))
+
         setValue("");
         setDate("");
     }
 
     return(
         <Container>
-            <h1>Cadastrar novo pedido</h1>
-            <Form onSubmit={handleSubmit}>
-                <input type="number" 
-                value={value} 
-                onChange={(e) => setValue(e.target.value)} 
-                placeholder="Valor do pedido" 
-                disabled={disabled} 
-                required />
-                <input type="date" 
-                value={date}
-                onChange={(e) => setDate(e.target.value)} 
-                name="Data do pedido" 
-                disabled={disabled} 
-                />
-                <button type="submit" disabled={disabled}>Criar pedido</button>
-            </Form>
+            <div>
+                <h1>Cadastrar novo pedido</h1>
+                <Form onSubmit={handleSubmit}>
+                    <input type="number" 
+                    value={value} 
+                    onChange={(e) => setValue(e.target.value)} 
+                    placeholder="Valor do pedido" 
+                    disabled={disabled} 
+                    required />
+                    <input type="date" 
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)} 
+                    name="Data do pedido" 
+                    disabled={disabled} 
+                    />
+                    <button type="submit" disabled={disabled}>Criar pedido</button>
+                </Form>
+            </div>
+            <ProductArea>
+                lista de produtos
+            </ProductArea>
         </Container>
     );
 };
 
 const Container = styled.div`
+    display: flex;
+
     h1{
         margin-bottom: 20px;
         font-size: 30px;
     }
 `;
+
+const ProductArea = styled.div`
+    margin-left: 80px;
+`
 
 const Form = styled.form`
     display: flex;
