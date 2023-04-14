@@ -30,8 +30,6 @@ export default function OrderDetails(props) {
         );  
     }
 
-    console.log(info)
-
     return(
         <Container>
             <h1>Detalhes do pedido {orderId}</h1>

@@ -38,45 +38,30 @@ export default function OrderTable(props) {
 
     return(
         <Container>
-            {/*<table>
-                <TableHead>
-                    <TableRow style={{ backgroundColor: 'lightgray' }}>
-                    <TableCell style={{ border: '1px solid black' }}>Cabeçalho 1</TableCell>
-                    <TableCell style={{ border: '1px solid black' }}>Cabeçalho 2</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow style={{ backgroundColor: 'white' }}>
-                    <TableCell style={{ border: '1px solid black' }}>Valor 1</TableCell>
-                    <TableCell style={{ border: '1px solid black' }}>Valor 2</TableCell>
-                    </TableRow>
-                </TableBody>
-            </table>*/}
             <table>
                 <TableHead>
                     <TableRow style={{ backgroundColor: 'lightgray' }}>
-                        <TableCell>Id</TableCell>
-                        <TableCell>Data</TableCell>
-                        <TableCell>Valor</TableCell>
-                        <TableCell>Rastreamento</TableCell>
-                        <TableCell>Recebido?</TableCell>
+                        <TableCell style={{ border: '1.8px solid black' }}>Id</TableCell>
+                        <TableCell style={{ border: '1px solid black' }}>Data</TableCell>
+                        <TableCell style={{ border: '1px solid black' }}>Valor</TableCell>
+                        <TableCell style={{ border: '1px solid black' }}>Rastreamento</TableCell>
+                        <TableCell style={{ border: '1px solid black' }}>Recebido?</TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody style={{ border: '1px solid black' }}>
+                <TableBody>
                 {orderList.map((a) =>
                     <>
                     <TableRow>
                         <TableCell style={{ border: '1px solid black' }}>{a.id}</TableCell>
                         <TableCell style={{ border: '1px solid black' }}>{formatDate(a.date)}</TableCell>
-                        <TableCell>{formatValue(a.value)}</TableCell>
-                        <TableCell><TrackingArea id={a.id}/></TableCell>
-                        <TableCell><Checkbox type="checkbox" checked={isChecked} onChange={handleCheckboxDone}/></TableCell>
-                        <TableCell>
-                            <button onClick={() => navigate(`/order/${a.id}`)}>Saiba mais</button>
+                        <TableCell style={{ border: '1px solid black' }}>{formatValue(a.value)}</TableCell>
+                        <TableCell style={{ border: '1px solid black' }}><TrackingArea id={a.id}/></TableCell>
+                        <TableCell style={{ border: '1px solid black' }}><Checkbox type="checkbox" checked={isChecked} onChange={handleCheckboxDone}/></TableCell>
+                        <TableCell >
+                            <ButtonMore onClick={() => navigate(`/order/${a.id}`)} >Saiba mais</ButtonMore>
                         </TableCell>
                     </TableRow>
                     </>
-
                 )}
                 </TableBody>
             </table>
@@ -86,12 +71,24 @@ export default function OrderTable(props) {
 };
 
 const Container = styled.div`
+    width: 800px !important;
 
 `;
 
 const ButtonNew = styled.button`
     width: 100%;
-    height: 50px;
+    background: #28A745;
+    border-radius: 8px;
+    height: 56px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    color: #FFFFFF;
+    margin-top: 20px;
+`
+
+const ButtonMore = styled(ButtonNew)`
+    height: 30px;
 `
 
 const Checkbox = styled.input`

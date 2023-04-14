@@ -6,7 +6,7 @@ async function useGetTrackingCodeById(orderId){
     const [trackingCode, setTrackingCode] = useState();
     const token = JSON.parse(localStorage.getItem("token"));
 
-    const requisition = axios.get(`${urlAPI}tracking/${orderId}`, 
+    const requisition = axios.get(`${urlAPI}tracking`, 
     {headers: {"Authorization": `Bearer ${token}`}})
     requisition.then((res) => {setTrackingCode(res.data)})
 
