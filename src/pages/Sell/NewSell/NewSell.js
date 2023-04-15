@@ -3,16 +3,22 @@ import { useState } from "react";
 import styled from "styled-components";
 import { urlAPI } from "../../../constants/URLs";
 import dayjs from "dayjs";
+import buttons from "../../../components/Buttons";
+import { useNavigate } from "react-router-dom";
+
 
 export default function NewSell() {    
     const [value, setValue] = useState();
     const [description, setDescription] = useState("");
     const [date, setDate] = useState();
     const [disabled, setDisabled] = useState(false);
+    const navigate = useNavigate();
     const token = JSON.parse(localStorage.getItem("token"));
+    const {SubmitButton, CancelButton, ButtonsArea} = buttons;
 
     async function handleSubmit(event){
         event.preventDefault();
+        setDisabled(true);
         
         const formatedDate = dayjs(date).toDate();
         
@@ -23,7 +29,7 @@ export default function NewSell() {
             date: formatedDate
         }, {headers: {"Authorization": `Bearer ${token}`}})
         requisition.then((res) => {console.log(res);alert("Criado!")})
-        .catch((err) => console.log(err))
+        .catch((err) => {console.log(err);alert("Erro! Tente novamente");setDisabled(false)})
 
         setValue("");
         setDate("");
@@ -51,7 +57,10 @@ export default function NewSell() {
                 name="Data da venda" 
                 disabled={disabled} 
                 />
-                <button type="submit" disabled={disabled}>Criar produto</button>
+                <ButtonsArea>
+                    <SubmitButton type="submit" disabled={disabled}>Criar produto</SubmitButton>
+                    <CancelButton onClick={() => navigate("/sell")}>Cancelar</CancelButton>
+                </ButtonsArea>
             </Form>
         </Container>
     );
@@ -101,17 +110,5 @@ const Form = styled.form`
             line-height: 124.5%;
             color: #7F8192;
         }
-    }
-
-    button{
-        background: #FF897E;
-        border-radius: 8px;
-        width: 332px;
-        height: 56px;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 100%;
-        color: #FFFFFF;
-        margin-top: 5px;
     }
 `

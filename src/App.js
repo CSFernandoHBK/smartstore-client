@@ -15,6 +15,7 @@ import ViewSells from "./pages/Sell/ViewSells/ViewSells"
 import NewSell from "./pages/Sell/NewSell/NewSell"
 import NewOrder from "./pages/Order/CreateOrder/CreateOrder"
 import NotFound from "./pages/NotFound/NotFound"
+import "./assets/styles/styles.css"
 
 
 export default function App() {
