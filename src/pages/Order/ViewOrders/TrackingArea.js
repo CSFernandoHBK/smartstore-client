@@ -19,11 +19,6 @@ export default function TrackingArea(props) {
         .catch((err) => console.log(err));
     }
 
-    if(trackingInfo){
-        console.log(trackingCode);
-        console.log(trackingInfo[0].unidade.endereco.cidade)
-    }
-
     async function getTrackingInfo(code){
         const requisition = axios.post(`${urlAPI}tracking`,
         [code], {headers: {"Authorization": `Bearer ${token}`}})
@@ -37,7 +32,13 @@ export default function TrackingArea(props) {
         )
     }
 
+    if(trackingInfo[0].codigo==="BDE"){
+        return(
+            <span>Entregue</span>
+        )
+    }
+
     return(
-        <span>{trackingCode} - {trackingInfo[0].unidade.endereco.cidade}</span>
+        <span>{`${trackingInfo[0].unidade.endereco.cidade} -> ${trackingInfo[0].unidadeDestino.endereco.cidade}`}</span>
     )
 }
