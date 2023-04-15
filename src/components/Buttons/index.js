@@ -29,10 +29,24 @@ const ButtonsArea = styled.div`
     margin-top: 10px;
 `
 
+const InsertNewButton = styled(Button)`
+    height: 30px;
+    width: auto;
+    background-color: #28A745;
+    font-size: 18px;
+    margin-left: 40px;
+`
+
+const BackButton = styled(Button)`
+    background-color: #28A745;    
+`
+
 const buttons = {
     SubmitButton,
     CancelButton,
-    ButtonsArea
+    ButtonsArea,
+    InsertNewButton,
+    BackButton
 }
 
 export default buttons;

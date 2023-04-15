@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { urlAPI } from "../../../constants/URLs";
 import dayjs from "dayjs";
 import axios from "axios";
+import ProductTable from "./ProductList";
 
 export default function NewOrder() {
     const [value, setValue] = useState();
@@ -11,7 +12,6 @@ export default function NewOrder() {
     const [disabled, setDisabled] = useState(false);
     const token = JSON.parse(localStorage.getItem("token"));
     const navigate = useNavigate();
-    const [selectedItems, setSelectedItems] = useState([]);
 
     function handleSubmit(event){
         event.preventDefault();
@@ -59,7 +59,7 @@ export default function NewOrder() {
                 </Form>
             </div>
             <ProductArea>
-                lista de produtos
+                <ProductTable/>
             </ProductArea>
         </Container>
     );
@@ -76,6 +76,7 @@ const Container = styled.div`
 
 const ProductArea = styled.div`
     margin-left: 80px;
+    border: 1px solid black;
 `
 
 const Form = styled.form`

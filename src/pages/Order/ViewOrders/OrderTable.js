@@ -6,17 +6,18 @@ import { formatDate, formatValue } from "../../../services";
 import axios from "axios";
 import { urlAPI } from "../../../constants/URLs";
 import TrackingArea from "./TrackingArea";
+import buttons from "../../../components/Buttons";
 
 export default function OrderTable(props) {
     const {orderList} = props;
     const navigate = useNavigate();
     const [isChecked, setIsChecked] = useState(false);
     const token = JSON.parse(localStorage.getItem("token"));
+    const {InsertNewButton} = buttons;
 
     useEffect(() => {
         async function info(id){
             const code = await getTrackingInfo(id)
-            console.log(code);
         }
         info(1);
     }, [])
@@ -40,17 +41,15 @@ export default function OrderTable(props) {
                         <TableCell style={{ border: '1px solid black' }}>Data</TableCell>
                         <TableCell style={{ border: '1px solid black' }}>Valor</TableCell>
                         <TableCell style={{ border: '1px solid black' }}>Rastreamento</TableCell>
-                        <TableCell style={{ border: '1px solid black' }}>Recebido?</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {orderList.map((a) =>
-                        <TableRow>
+                    {orderList.map((a, index) =>
+                        <TableRow key={index}>
                             <TableCell style={{ border: '1px solid black' }}>{a.id}</TableCell>
                             <TableCell style={{ border: '1px solid black' }}>{formatDate(a.date)}</TableCell>
                             <TableCell style={{ border: '1px solid black' }}>{formatValue(a.value)}</TableCell>
                             <TableCell style={{ border: '1px solid black' }}><TrackingArea id={a.id}/></TableCell>
-                            <TableCell style={{ border: '1px solid black' }}><Checkbox type="checkbox" checked={isChecked} onChange={handleCheckboxDone}/></TableCell>
                             <TableCell >
                                 <ButtonMore onClick={() => navigate(`/order/${a.id}`)} >Saiba mais</ButtonMore>
                             </TableCell>

@@ -1,16 +1,20 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { urlAPI } from "../../../constants/URLs";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { formatValue } from "../../../services";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import buttons from "../../../components/Buttons";
 
 export default function OrderDetails(props) {
     const params = useParams();
     const orderId = params.orderId;
     const token = JSON.parse(localStorage.getItem("token"));
     const [info, setInfo] = useState();
+    const {BackButton} = buttons;
+    const navigate = useNavigate();
 
     useEffect(() => {
         getOrderDetails(orderId)
@@ -21,6 +25,8 @@ export default function OrderDetails(props) {
         {headers: {"Authorization": `Bearer ${token}`}})
         requisition.then((res) => setInfo(res.data))
     }
+
+    console.log(info);
 
     if(!info){
         return(
@@ -44,12 +50,32 @@ export default function OrderDetails(props) {
                 </div>    
             </div>
             <div>
-                <span>Produtos:</span>
-            </div>
-            <div>
                 <span>Status de rastreamento:</span>
                 <span>CURITIBA</span>
             </div>
+            <div>
+                <span>Produtos:</span>
+                <table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Nome</TableCell>
+                            <TableCell>Quantidade</TableCell>
+                            <TableCell>Preço</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {info.products.map((a) => 
+                            <TableRow>
+                                <TableCell>{a.product.name}</TableCell>
+                                <TableCell>{a.quantity}</TableCell>
+                                <TableCell>{formatValue(a.product.buyPrice)}</TableCell>
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </table>
+            </div>
+            <BackButton onClick={() => navigate("/order")}>Voltar</BackButton>
+            
         </Container>
     );
 };

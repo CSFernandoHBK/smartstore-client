@@ -3,6 +3,7 @@ import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import FinanceLine from "./FinanceLine";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatValue } from "../../../services";
 
 export default function FinanceTable(props) {
     const {financeInfo} = props;
@@ -41,10 +42,10 @@ export default function FinanceTable(props) {
                 )}
                 <TableRow>
                     <TableCell>Resultado</TableCell>
-                    <TableCell>R$ {result/100}</TableCell>
+                    <TableCell>{formatValue(result)}</TableCell>
                 </TableRow>
             </TableBody>
-            <ButtonNew onClick={() => navigate("/finance/new")}>Inserir nova movimentação financeira</ButtonNew>    
+            {/*<ButtonNew onClick={() => navigate("/finance/new")}>Inserir nova movimentação financeira</ButtonNew>*/}   
         </Container>
     );
 };
