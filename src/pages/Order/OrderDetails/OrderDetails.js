@@ -13,7 +13,7 @@ export default function OrderDetails(props) {
     const orderId = params.orderId;
     const token = JSON.parse(localStorage.getItem("token"));
     const [info, setInfo] = useState();
-    const {BackButton} = buttons;
+    const {BackButton, DetailsButton} = buttons;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -40,21 +40,20 @@ export default function OrderDetails(props) {
         <Container>
             <h1>Detalhes do pedido {orderId}</h1>
             <div>
-                <div>
-                    <span>Valor:</span>
-                    <span>{formatValue(info.value)}</span>
-                </div>
-                <div>
-                    <span>Data:</span>
-                    <span>{dayjs(info.date).format('DD/MM/YYYY')}</span>
-                </div>    
+                <DivWithSpan>
+                    <span>Valor: {formatValue(info.value)}</span>
+                    <span></span>
+                </DivWithSpan>
+                <DivWithSpan>
+                    <span>Data: {dayjs(info.date).format('DD/MM/YYYY')}</span>
+                    <span></span>
+                </DivWithSpan>    
             </div>
+            <DivWithSpan>
+                <span>Status de rastreamento: FORTALEZA</span>
+            </DivWithSpan>
             <div>
-                <span>Status de rastreamento:</span>
-                <span>CURITIBA</span>
-            </div>
-            <div>
-                <span>Produtos:</span>
+                <h3>Produtos:</h3>
                 <table>
                     <TableHead>
                         <TableRow>
@@ -69,6 +68,7 @@ export default function OrderDetails(props) {
                                 <TableCell>{a.product.name}</TableCell>
                                 <TableCell>{a.quantity}</TableCell>
                                 <TableCell>{formatValue(a.product.buyPrice)}</TableCell>
+                                <DetailsButton onClick={() => navigate(`/product/${a.productId}`)}>+ detalhes</DetailsButton>
                             </TableRow>
                         )}
                     </TableBody>
@@ -91,19 +91,14 @@ const Container = styled.div`
         margin-bottom: 20px;
         font-size: 30px;
     }
-
-    div:nth-child(2){
-        & > div{
-            display:flex;
-
-        span:nth-child(1){
-            font-size: 18px;
-        }
-        span:nth-child(2){
-            font-size: 20px;
-        }
-    }
-    }
-
-    
 `;
+
+const DivWithSpan = styled.div`
+    display:flex;
+    margin-bottom: 12px;
+        span:nth-child(1){
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+        }  
+`

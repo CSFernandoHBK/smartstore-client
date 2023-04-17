@@ -41,12 +41,21 @@ const BackButton = styled(Button)`
     background-color: #28A745;    
 `
 
+const DetailsButton = styled(Button)`
+    height: 30px;
+    background-color: #28A745;
+    width: auto;
+    font-size: 14px;
+    margin-left: 20px;
+`
+
 const buttons = {
     SubmitButton,
     CancelButton,
     ButtonsArea,
     InsertNewButton,
-    BackButton
+    BackButton,
+    DetailsButton
 }
 
 export default buttons;

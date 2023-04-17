@@ -9,6 +9,7 @@ export default function CreateProduct() {
     const [buyPrice, setBuyPrice] = useState();
     const [sellPrice, setSellPrice] = useState();
     const [stock, setStock] = useState();
+    const [link, setLink] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const token = JSON.parse(localStorage.getItem("token"));
     const navigate = useNavigate();
@@ -23,7 +24,19 @@ export default function CreateProduct() {
             sellPrice: Number(sellPrice),
             stock: Number(stock)
         }, {headers: {"Authorization": `Bearer ${token}`}})
-        requisition.then((r) => {console.log(r);navigate("/product")})
+        requisition.then((res) => {handleImage(res.data.id)})
+        requisition.catch((err) => {console.log(err);alert("Erro! tente novamente");setDisabled(false)})
+    }
+
+    /*async function handleImageChange(event){
+        setImage(event.target.files[0]);
+    }*/
+
+    async function handleImage(productId){
+        const requisition = axios.post(`${urlAPI}image/${productId}`, {
+            link: link
+        }, {headers: {"Authorization": `Bearer ${token}`}})
+        requisition.then((res) => {console.log(res.data);navigate(`/product/${productId}`)});
         requisition.catch((err) => {console.log(err);alert("Erro! tente novamente");setDisabled(false)})
     }
 
@@ -55,9 +68,16 @@ export default function CreateProduct() {
                 placeholder="Estoque" 
                 disabled={disabled} 
                 required />
-                <input type="file"
-                placeholder="Insira a imagem"
+                <input type="link"
+                onChange={(e) => setLink(e.target.value)}
+                placeholder="Link da imagem"
+                disabled={disabled}
+                required
                 />
+                {/*<input type="file"
+                placeholder="Insira a imagem"
+                onChange={handleImageChange}
+                />*/}
                 <button type="submit" disabled={disabled}>Criar produto</button>
             </Form>
         </Container>

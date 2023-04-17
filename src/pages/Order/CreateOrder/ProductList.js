@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { urlAPI } from "../../../constants/URLs";
 import { formatValue } from "../../../services";
+import ProductListLine from "./ProductListLine";
 
-export default function ProductTable() {
+export default function ProductTable(props) {
+    const {setSelectedProducts, selectedProducts} = props;
     const token = JSON.parse(localStorage.getItem("token"));
-    const [selectedItems, setSelectedItems] = useState([]);
     const [productList, setProductList] = useState([]);
 
     useEffect(() => {
@@ -20,7 +21,14 @@ export default function ProductTable() {
         requisition.then((res) => setProductList(res.data))
     }
 
-    console.log(productList);
+    function handleCheckboxChange(productId){
+        const isSelected = selectedProducts.includes(productId);
+        if(isSelected){
+            setSelectedProducts(selectedProducts.filter(id => id !== productId));
+        } else {
+            setSelectedProducts([...selectedProducts, productId]);
+        }
+    }
 
     if(productList.length === 0){
         return(
@@ -37,22 +45,27 @@ export default function ProductTable() {
                         <TableCell>Id</TableCell>
                         <TableCell>Nome</TableCell>
                         <TableCell>Preço</TableCell>
+                        <TableCell>Quantidade</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {productList.map((a) => 
-                    <TableRow>
-                        <TableCell><input type="checkbox"/></TableCell>
-                        <TableCell>{a.id}</TableCell>
-                        <TableCell>{a.name}</TableCell>
-                        <TableCell>{formatValue(a.buyPrice)}</TableCell>
-                    </TableRow>
+                    <ProductListLine 
+                    setSelectedProducts={setSelectedProducts}
+                    selectedProducts={selectedProducts}
+                    productId={a.id}
+                    productInfo={a}
+                    />
                     )}
-                </TableBody>
+                    </TableBody>
             </table>
         </Container>
     );
 };
 
 const Container = styled.div`
+    .quantity{
+        width: 60px;
+    }
+
 `

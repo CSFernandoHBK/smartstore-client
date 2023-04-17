@@ -1,15 +1,30 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { urlAPI } from "../../../constants/URLs";
 
 export default function ProductCard(props) {
     const {id, name, stock} = props.productInfo;
-    const img = props.img;
+    const [imageLink, setImageLink] = useState();
     const token = JSON.parse(localStorage.getItem("token"));
     const navigate = useNavigate();
 
+    useEffect(() => {
+        getImage(id);
+    }, [])
+
+    async function getImage(productId){
+        const requisition = axios.get(`${urlAPI}image/${productId}`,
+        {headers: {"Authorization": `Bearer ${token}`}})
+        requisition.then((res) => {setImageLink(res.data.link)})
+    }
+
+    console.log(imageLink)
+
     return(
         <Container onClick={() => navigate(`/product/${id}`)}>
-            <img src={img}/>
+            <img src={imageLink}/>
             <h3>{name}</h3>
             <h4>Stock: {stock}</h4>
             <button>Mais detalhes</button>

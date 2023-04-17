@@ -4,11 +4,18 @@ import styled from "styled-components";
 import img1 from "../../../assets/images/img1.png"
 import { urlAPI } from "../../../constants/URLs";
 import { formatValue } from "../../../services";
+import { useEffect, useState } from "react";
 
 export default function DetailsArea(props) {
     const {id, name, buyPrice, sellPrice, stock} = props.productInfo;
+    const [imageLink, setImageLink] = useState();
     const token = JSON.parse(localStorage.getItem("token"));
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getImage(id);
+    }, [])
+    
 
     function deleteProduct(id){
         const requisition = axios.delete(`${urlAPI}product/${id}`,
@@ -16,9 +23,15 @@ export default function DetailsArea(props) {
         requisition.then(() => {alert("Produto deletado");navigate("/product")})
     }
 
+    async function getImage(productId){
+        const requisition = axios.get(`${urlAPI}image/${productId}`,
+        {headers: {"Authorization": `Bearer ${token}`}})
+        requisition.then((res) => {setImageLink(res.data.link)})
+    }
+
     return(
         <Container>
-            <img src={img1}/>
+            <img src={imageLink}/>
             <div>
                 <h1>{name}</h1>
                 <div>

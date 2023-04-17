@@ -9,9 +9,12 @@ import ProductTable from "./ProductList";
 export default function NewOrder() {
     const [value, setValue] = useState();
     const [date, setDate] = useState();
+    const [selectedProducts, setSelectedProducts] = useState([]);
     const [disabled, setDisabled] = useState(false);
     const token = JSON.parse(localStorage.getItem("token"));
     const navigate = useNavigate();
+
+    console.log(selectedProducts);
 
     function handleSubmit(event){
         event.preventDefault();
@@ -24,18 +27,24 @@ export default function NewOrder() {
             description: `pedido`,
             date: formatedDate
         }, {headers: {"Authorization": `Bearer ${token}`}})
-        requisition.then((res) => {console.log(res);alert("Criado!")})
-        .catch((err) => console.log(err))
+        requisition.catch((err) => console.log(err))
 
         const reqOrder = axios.post(`${urlAPI}order`, {
             value: Number(value),
             date: formatedDate
         }, {headers: {"Authorization": `Bearer ${token}`}})
-        requisition.then((res) => {console.log(res);alert("Criado!")})
+        reqOrder.then((res) => reqProductsByOrder(res.data.id))
         .catch((err) => console.log(err))
 
         setValue("");
         setDate("");
+    }
+
+    function reqProductsByOrder(orderId){
+        const requisition = axios.post(`${urlAPI}order/${orderId}`, 
+        {selectedProducts}, 
+        {headers: {"Authorization": `Bearer ${token}`}})
+        requisition.then(() => {alert(`Pedido criado: id ${orderId} com ${selectedProducts.length} produtos`)})
     }
 
     return(
@@ -55,11 +64,16 @@ export default function NewOrder() {
                     name="Data do pedido" 
                     disabled={disabled} 
                     />
+                    <p>Produtos incluídos:</p>
+                    <input type="text"
+                    value={selectedProducts}
+                    disabled={true}
+                    />
                     <button type="submit" disabled={disabled}>Criar pedido</button>
                 </Form>
             </div>
             <ProductArea>
-                <ProductTable/>
+                <ProductTable setSelectedProducts={setSelectedProducts} selectedProducts={selectedProducts}/>
             </ProductArea>
         </Container>
     );
@@ -112,5 +126,10 @@ const Form = styled.form`
         line-height: 100%;
         color: #FFFFFF;
         margin-top: 5px;
+    }
+
+    p{
+        margin-bottom: 10px;
+        margin-top: 15px;
     }
 `
