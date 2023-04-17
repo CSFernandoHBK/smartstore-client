@@ -13,7 +13,7 @@ export default function OrderDetails(props) {
     const orderId = params.orderId;
     const token = JSON.parse(localStorage.getItem("token"));
     const [info, setInfo] = useState();
-    const {BackButton, DetailsButton} = buttons;
+    const {BackButton, DetailsButton, CancelButton} = buttons;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,7 +26,11 @@ export default function OrderDetails(props) {
         requisition.then((res) => setInfo(res.data))
     }
 
-    console.log(info);
+    function deleteOrder(orderId){
+        const requisition = axios.delete(`${urlAPI}order/${orderId}`,
+        {headers: {"Authorization": `Bearer ${token}`}})
+        requisition.then(() => navigate("/order"))
+    }
 
     if(!info){
         return(
@@ -75,7 +79,7 @@ export default function OrderDetails(props) {
                 </table>
             </div>
             <BackButton onClick={() => navigate("/order")}>Voltar</BackButton>
-            
+            <CancelButton onClick={() => deleteOrder(orderId)}>Deletar pedido</CancelButton>
         </Container>
     );
 };

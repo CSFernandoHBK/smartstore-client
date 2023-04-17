@@ -20,7 +20,7 @@ export default function SideBar() {
                 {functions.map((a) => <SideBarItem function={a}/>)}   
             </div>
             <div>
-                <Button>Sua conta</Button>
+                <Button onClick={() => {navigate("/account")}}>Sua conta</Button>
                 <LogoutButton onClick={() => {signOut(token);navigate("/")}}>Logout</LogoutButton>
             </div>
         </Container>

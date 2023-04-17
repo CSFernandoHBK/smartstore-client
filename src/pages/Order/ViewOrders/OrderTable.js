@@ -57,7 +57,6 @@ export default function OrderTable(props) {
                     )}
                 </TableBody>
             </table>
-            <ButtonNew onClick={() => navigate("/order/new")}>Inserir novo pedido</ButtonNew>
         </Container>
     );
 };
@@ -82,6 +81,8 @@ const ButtonNew = styled.button`
 const ButtonMore = styled(ButtonNew)`
     height: 30px;
 `
+
+
 
 const Checkbox = styled.input`
     width: 20px;

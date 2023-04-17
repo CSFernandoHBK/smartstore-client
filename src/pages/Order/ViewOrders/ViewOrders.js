@@ -3,10 +3,14 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { urlAPI } from "../../../constants/URLs";
 import OrderTable from "./OrderTable";
+import { useNavigate } from "react-router-dom";
+import buttons from "../../../components/Buttons";
 
 export default function ViewOrders() {
     const [orderList, setOrderList] = useState([]);
     const token = JSON.parse(localStorage.getItem("token"));
+    const navigate = useNavigate();
+    const {InsertNewButton} = buttons;
 
     useEffect(() => {
       const requisition = axios.get(`${urlAPI}order`,
@@ -25,7 +29,10 @@ export default function ViewOrders() {
 
     return(
         <Container>
-            <h1>Pedidos</h1>
+            <div>
+                <h1>Pedidos</h1> 
+                <InsertNewButton onClick={() => navigate("/order/new")}>Inserir novo pedido</InsertNewButton>  
+            </div>
             <OrderTable orderList={orderList}/>
         </Container>
     );
@@ -38,8 +45,12 @@ const Container = styled.div`
     height: 100%;
     width: 100%;
 
-    h1{
+    & > div:nth-child(1){
+        display: flex;
         margin-bottom: 20px;
+    }
+
+    h1{
         font-size: 30px;
     }
 

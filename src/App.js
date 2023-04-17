@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound/NotFound"
 import "./assets/styles/styles.css"
 import Contact from "./pages/Contact/Contact"
 import { useEffect } from "react"
+import Account from "./pages/Account/Account"
 
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
                 <Route path="/sell" element={<ViewSells/>}/>
                 <Route path="/sell/new" element={<NewSell/>}/>
                 <Route path="/advertisement" element={<ViewAds/>}/>
+                <Route path="/account" element={<Account/>}/>
               </Routes>  
             </Content>
           </Container>
