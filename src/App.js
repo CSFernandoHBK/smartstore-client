@@ -16,12 +16,25 @@ import NewSell from "./pages/Sell/NewSell/NewSell"
 import NewOrder from "./pages/Order/CreateOrder/CreateOrder"
 import NotFound from "./pages/NotFound/NotFound"
 import "./assets/styles/styles.css"
+import Contact from "./pages/Contact/Contact"
 
 
 export default function App() {
   const token = JSON.parse(localStorage.getItem("token"));
 
-  if(token){
+  return(
+    <>
+      <GlobalStyles/>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+        </Routes>
+      </Router>
+    </>
+  )
+
+  /*if(token){
     return(
       <>
         <GlobalStyles/>
@@ -59,9 +72,7 @@ export default function App() {
         </Router>
       </>
     )
-  }
-
-  
+  }*/
 };
 
 function ProtectedRouteGuard({ children }) {
