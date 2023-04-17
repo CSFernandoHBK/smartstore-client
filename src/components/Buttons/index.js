@@ -50,6 +50,7 @@ const DetailsButton = styled(Button)`
 `
 
 const buttons = {
+    Button,
     SubmitButton,
     CancelButton,
     ButtonsArea,

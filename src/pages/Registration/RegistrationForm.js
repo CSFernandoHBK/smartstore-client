@@ -76,7 +76,6 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #E5E5E5;
 
     h1{
         font-family: 'Roboto', sans-serif;

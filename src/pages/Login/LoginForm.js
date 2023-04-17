@@ -43,9 +43,9 @@ export default function LoginForm() {
     };
 
     function responseProcess(res){
-        console.log(res);
         localStorage.setItem("token", JSON.stringify(res));
         navigate("/product");
+        window.location.reload();
     }
 
     return(
@@ -89,7 +89,8 @@ const Container = styled.div`
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    width: 80%;
+    align-items: center;
+    width: 100%;
     margin-bottom: 30px;
 
     input{

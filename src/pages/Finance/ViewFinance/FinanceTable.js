@@ -42,6 +42,8 @@ export default function FinanceTable(props) {
                 )}
                 <TableRow>
                     <TableCell>Resultado</TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
                     <TableCell>{formatValue(result)}</TableCell>
                 </TableRow>
             </TableBody>

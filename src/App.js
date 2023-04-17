@@ -17,24 +17,13 @@ import NewOrder from "./pages/Order/CreateOrder/CreateOrder"
 import NotFound from "./pages/NotFound/NotFound"
 import "./assets/styles/styles.css"
 import Contact from "./pages/Contact/Contact"
+import { useEffect } from "react"
 
 
 export default function App() {
   const token = JSON.parse(localStorage.getItem("token"));
 
-  return(
-    <>
-      <GlobalStyles/>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Landing/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-        </Routes>
-      </Router>
-    </>
-  )
-
-  /*if(token){
+  if(token){
     return(
       <>
         <GlobalStyles/>
@@ -44,7 +33,6 @@ export default function App() {
             <TopBar/>
             <Content>
               <Routes>
-                <Route path="/" element={<Landing/>}/>
                 <Route path="/product" element={<ViewProducts/>}/>
                 <Route path="/product/:productId" element={<ProductDetails/>}/>
                 <Route path="/product/new" element={<CreateProduct/>}/>
@@ -68,24 +56,13 @@ export default function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Landing/>}/>
+            <Route path="/contact" element={<Contact/>}/>
           </Routes>
         </Router>
       </>
     )
-  }*/
-};
-
-function ProtectedRouteGuard({ children }) {
-  const token = JSON.parse(localStorage.getItem("token"));
-
-  if (!token) {
-    return <Navigate to="/sign-in" />;
   }
-
-  return <>
-    {children}
-  </>;
-}
+};
 
 const Content = styled.div`
   padding-top: 100px;
