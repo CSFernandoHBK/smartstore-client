@@ -1,1 +1,1 @@
-export const urlAPI = "http://localhost:4000/"
+export const urlAPI = "https://smartstore-dp3l.onrender.com"
