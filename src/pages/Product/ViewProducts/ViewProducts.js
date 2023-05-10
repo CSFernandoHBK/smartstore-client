@@ -18,9 +18,12 @@ export default function ViewProducts() {
 
     if(productList.length === 0){
         return(
-            <div>
-                Carregando
-            </div>
+            <Container>
+                <h1>Produtos</h1>
+                <div>
+                    <NewCard/>
+                </div>    
+            </Container>
         )
     }
 

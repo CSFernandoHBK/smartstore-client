@@ -21,9 +21,12 @@ export default function ViewOrders() {
 
     if(orderList.length === 0){
         return(
-            <div>
-                Carregando
-            </div>
+            <Container>
+               <div>
+                   <h1>Pedidos</h1> 
+                    <InsertNewButton onClick={() => navigate("/order/new")}>Inserir novo pedido</InsertNewButton>  
+               </div>
+            </Container>
         )
     }
 

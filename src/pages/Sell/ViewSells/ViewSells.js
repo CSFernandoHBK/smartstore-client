@@ -20,9 +20,12 @@ export default function ViewSells() {
 
     if(sellsList.length === 0){
         return(
-            <div>
-                Carregando
-            </div>
+            <Container>
+                <div>
+                    <h1>Vendas</h1>
+                    <InsertNewButton onClick={() => navigate("/sell/new")}>Nova venda</InsertNewButton>    
+                </div>
+            </Container>
         )
     }
 
