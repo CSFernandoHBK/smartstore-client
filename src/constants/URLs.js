@@ -1,1 +1,1 @@
-export const urlAPI = "https://smartstore-dp3l.onrender.com"
+export const urlAPI = "https://smartstore-dp3l.onrender.com/"
