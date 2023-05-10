@@ -9,7 +9,7 @@ export default function LoginForm() {
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(false);
-    const token = "";
+    const token = JSON.parse(localStorage.getItem("token"));
 
     useEffect(() => {
         if(token){
@@ -21,6 +21,7 @@ export default function LoginForm() {
     function sendLogin(event){
         event.preventDefault();
         setDisabled(true);
+
 
         //aqui eu preciso inserir uma verificação:
             //consultar se existe esse usuario
