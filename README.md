@@ -1,3 +1,3 @@
 # Smartstore-client
 
-### Documentação em desenvolvimento...
+### Front-End do Smartstore
